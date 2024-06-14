@@ -1,7 +1,57 @@
-10:15:10 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+10:39:43 **** Incremental Build of configuration Debug for project ADC_Example ****
 make -j16 all 
-arm-none-eabi-size  UART_RXTX_Example.elf 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "ADC_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\ADC_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_Example.elf
+ 
+arm-none-eabi-size  ADC_Example.elf 
+arm-none-eabi-objdump -h -S ADC_Example.elf  > "ADC_Example.list"
    text	   data	    bss	    dec	    hex	filename
-   1100	      0	   1568	   2668	    a6c	UART_RXTX_Example.elf
+   5416	     92	   1908	   7416	   1cf8	ADC_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_Example.list
+ 
+10:39:46 **** Incremental Build of configuration Debug for project ADC_Example ****
+make -j16 all 
+arm-none-eabi-size  ADC_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5416	     92	   1908	   7416	   1cf8	ADC_Example.elf
+Finished building: default.size.stdout
+ 
+10:58:45 **** Incremental Build of configuration Debug for project ADC_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/adc.d" -MT"Src/adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/adc.o"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "ADC_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\ADC_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_Example.elf
+ 
+arm-none-eabi-size  ADC_Example.elf 
+arm-none-eabi-objdump -h -S ADC_Example.elf  > "ADC_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   5428	     92	   1908	   7428	   1d04	ADC_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_Example.list
+ 
+10:58:55 **** Incremental Build of configuration Debug for project ADC_Example ****
+make -j16 all 
+arm-none-eabi-size  ADC_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5428	     92	   1908	   7428	   1d04	ADC_Example.elf
+Finished building: default.size.stdout
+ 
+10:59:27 **** Incremental Build of configuration Debug for project ADC_Example ****
+make -j16 all 
+arm-none-eabi-size  ADC_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5428	     92	   1908	   7428	   1d04	ADC_Example.elf
+Finished building: default.size.stdout
+ 
+10:59:41 **** Incremental Build of configuration Debug for project ADC_Example ****
+make -j16 all 
+arm-none-eabi-size  ADC_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5428	     92	   1908	   7428	   1d04	ADC_Example.elf
 Finished building: default.size.stdout
  

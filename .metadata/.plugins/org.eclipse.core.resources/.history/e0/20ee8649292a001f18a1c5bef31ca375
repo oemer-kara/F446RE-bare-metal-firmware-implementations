@@ -1,0 +1,20 @@
+
+#include "uart.h"
+#include "adc.h"
+#include <stdio.h>
+
+uint32_t sensor_value;
+
+int main(void)
+{
+
+    uart2_txrx_init( );
+    pa1_adc_init();
+    start_conversion();
+
+
+    while(1)
+    {
+
+    }
+}

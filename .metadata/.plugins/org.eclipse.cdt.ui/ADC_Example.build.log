@@ -1,22 +1,10 @@
-10:15:05 **** Incremental Build of configuration Debug for project ADC_Example ****
+10:59:41 **** Incremental Build of configuration Debug for project ADC_Example ****
 make -j16 all 
-arm-none-eabi-gcc "../Src/adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/adc.d" -MT"Src/adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/adc.o"
-In file included from ../Src/adc.c:8:
-../Inc/adc.h:24: warning: "GPIOA" redefined
-   24 | #define GPIOA           ((GPIO_TypeDef*) GPIOA_BASE)
-      | 
-In file included from ../Inc/adc.h:10:
-D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h:1121: note: this is the location of the previous definition
- 1121 | #define GPIOA               ((GPIO_TypeDef *) GPIOA_BASE)
-      | 
-../Inc/adc.h:37:3: error: conflicting types for 'GPIO_TypeDef'; have 'struct <anonymous>'
-   37 | } GPIO_TypeDef;
-      |   ^~~~~~~~~~~~
-D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include/stm32f446xx.h:469:3: note: previous declaration of 'GPIO_TypeDef' with type 'GPIO_TypeDef'
-  469 | } GPIO_TypeDef;
-      |   ^~~~~~~~~~~~
-make: *** [Src/subdir.mk:34: Src/adc.o] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-size  ADC_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5428	     92	   1908	   7428	   1d04	ADC_Example.elf
+Finished building: default.size.stdout
+ 
 
-10:15:05 Build Failed. 2 errors, 1 warnings. (took 144ms)
+10:59:41 Build Finished. 0 errors, 0 warnings. (took 135ms)
 
