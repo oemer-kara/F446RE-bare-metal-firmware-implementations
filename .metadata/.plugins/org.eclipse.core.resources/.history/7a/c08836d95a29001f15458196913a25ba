@@ -1,0 +1,26 @@
+/*
+ * uart.c
+ *
+ *  Created on: Jun 13, 2024
+ *      Author: oemerkara
+ */
+
+#define GPIOA_EN      (1U << 0)
+#define USART2_EN     (1U << 17)
+#define SYS_FREQ      16000000
+#define APB1_CLK      SYS_FREQ     // Assuming no prescalers are used
+#define UART_BAUDRATE 115200
+#define CR1_TE        (1U << 3)
+#define CR1_UE        (1U << 13)
+#define SR_TXE        (1U << 7)
+
+
+static uint16_t compute_uart_baud_rate(uint32_t peripheral_clock, uint32_t baud_rate)
+{
+    return (peripheral_clock + (baud_rate / 2U)) / baud_rate;
+}
+
+static void uart_set_baud_rate(USART_TypeDef* usart_tx, uint32_t peripheral_clock, uint32_t baud_rate)
+{
+    usart_tx->BRR = compute_uart_baud_rate(peripheral_clock, baud_rate);
+}

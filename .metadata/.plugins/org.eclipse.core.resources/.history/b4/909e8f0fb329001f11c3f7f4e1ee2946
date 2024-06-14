@@ -1,0 +1,146 @@
+#include <stdint.h>
+#include <stdio.h>
+
+
+#define __IO volatile
+
+#define PERIPH_BASE 0x40000000UL
+
+#define APB1PERIPH_BASE PERIPH_BASE
+#define AHB1PERIPH_BASE (PERIPH_BASE + 0x00020000UL)
+
+#define RCC_BASE (AHB1PERIPH_BASE + 0x3800UL)
+#define RCC      ((RCC_TypeDef*) RCC_BASE)
+
+#define USART2_BASE (APB1PERIPH_BASE + 0x4400UL)
+#define USART2      ((USART_TypeDef*) USART2_BASE)
+
+#define GPIOA_BASE (AHB1PERIPH_BASE + 0x0000UL)
+#define GPIOA      ((GPIO_TypeDef*) GPIOA_BASE)
+
+#define GPIOA_EN  (1U << 0)
+#define USART2_EN (1U << 17)
+
+#define SYS_FREQ      16000000
+#define APB1_CLK      SYS_FREQ     // Assuming no prescalers are used
+#define UART_BAUDRATE 115200
+
+#define CR1_TE (1U << 3)
+#define CR1_UE (1U << 13)
+#define CR1_RE (1U << 2)
+
+#define SR_TXE  (1U << 7)
+#define SR_RXNE (1U << 5)
+
+typedef struct
+{
+    __IO uint32_t MODER;
+    __IO uint32_t OTYPER;
+    __IO uint32_t OSPEEDR;
+    __IO uint32_t PUPDR;
+    __IO uint32_t IDR;
+    __IO uint32_t ODR;
+    __IO uint32_t BSRR;
+    __IO uint32_t LCKR;
+    __IO uint32_t AFR[2];
+} GPIO_TypeDef;
+
+typedef struct
+{
+    __IO uint32_t SR;
+    __IO uint32_t DR;
+    __IO uint32_t BRR;
+    __IO uint32_t CR1;
+    __IO uint32_t CR2;
+    __IO uint32_t CR3;
+    __IO uint32_t GTPR;
+} USART_TypeDef;
+
+typedef struct
+{
+    uint32_t      NO_USE[12];
+    __IO uint32_t AHB1ENR; //this
+    uint32_t      NO_USE[3];
+    __IO uint32_t APB1ENR; // this
+
+} RCC_TypeDef;
+
+char key;
+
+void uart2_write(int ch);
+char uart2_read( );
+void uart_set_baud_rate(USART_TypeDef* usart_tx, uint32_t peripheral_clock, uint32_t baud_rate);
+void uart2_txrx_init( );
+
+#define GPIOA_5 (1U << 5)
+#define LED_PIN GPIOA_5
+
+int main(void)
+{
+    // Enable clock access to GPIOA
+    RCC->AHB1ENR |= GPIOA_EN;
+
+    // Configure GPIOA pin 5 (LED_PIN) as output
+    GPIOA->MODER |= (1U << 10);     // Set pin 5 to output mode
+
+    // Initialize UART communication
+    uart2_txrx_init( );
+
+    while(1)
+    {
+        char ch = uart2_read( );
+        GPIOA->ODR |= LED_PIN;     // Turn on LED
+        uart2_write(ch);
+        GPIOA->ODR &= ~LED_PIN;     // Turn off LED
+    }
+}
+
+void uart2_txrx_init( )
+{
+    // Enable Clock access to GPIOA
+    RCC->AHB1ENR |= GPIOA_EN;
+
+    // Set PA2 (USART2 TX) to Alternate Function Mode
+    GPIOA->MODER &= ~(3U << 4);       // Clear bits 4 and 5
+    GPIOA->MODER |= (2U << 4);        // Set bits 4 and 5 to 10 (Alternate Function)
+    GPIOA->AFR[0] &= ~(0xF << 8);     // Clear bits 8-11
+    GPIOA->AFR[0] |= (7U << 8);       // Set bits 8-11 to 0111 (AF7 for USART2)
+
+    // Set PA3 (USART2 RX) to Alternate Function Mode
+    GPIOA->MODER &= ~(3U << 6);        // Clear bits 6 and 7
+    GPIOA->MODER |= (2U << 6);         // Set bits 6 and 7 to 10 (Alternate Function)
+    GPIOA->AFR[0] &= ~(0xF << 12);     // Clear bits 12-15
+    GPIOA->AFR[0] |= (7U << 12);       // Set bits 12-15 to 0111 (AF7 for USART2)
+
+    // Enable clock access to UART2
+    RCC->APB1ENR |= USART2_EN;
+
+    // Configure UART Baudrate
+    uart_set_baud_rate(USART2, APB1_CLK, UART_BAUDRATE);
+
+    // Configure transfer direction (transmitter and receiver enabled)
+    USART2->CR1 = (CR1_TE | CR1_RE);
+
+    // Enable the UART module
+    USART2->CR1 |= CR1_UE;
+}
+
+char uart2_read( )
+{
+    // Wait until data is received
+    while(!(USART2->SR & SR_RXNE)) {}
+    return USART2->DR;
+}
+
+void uart2_write(int ch)
+{
+    // Wait until transmit data register is empty
+    while(!(USART2->SR & SR_TXE)) {}
+    // Write to transmit data register
+    USART2->DR = (ch & 0xFF);
+}
+
+void uart_set_baud_rate(USART_TypeDef* usart_tx, uint32_t peripheral_clock, uint32_t baud_rate)
+{
+    usart_tx->BRR = (peripheral_clock + (baud_rate / 2U)) / baud_rate;
+}

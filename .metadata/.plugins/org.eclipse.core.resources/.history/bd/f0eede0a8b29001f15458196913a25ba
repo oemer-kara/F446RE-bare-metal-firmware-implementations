@@ -1,0 +1,17 @@
+/*
+ * adc.c
+ *
+ *  Created on: Jun 13, 2024
+ *      Author: oemerkara
+ */
+
+#include "adc.h"
+#include
+
+void pa1_adc_init(void)
+{
+    //Enable clock access to GPIOA
+	//Set the mode of PA1 to analog
+
+	//Configure the ADC
+}

@@ -1,0 +1,40 @@
+#define PERIPHERAL_BASE 0x40000000UL
+
+#define AHB1_OFFSET  0x00020000UL
+#define GPIOA_OFFSET 0x0000UL     // This is 0400 for B 0800 for C
+
+#define RCC_OFFSET 0x00003800UL
+
+#define RCC_AHB1ENR_OFFSET 0x30UL
+
+#define GPIOx_MODER_OFFSET 0x00UL
+
+#define GPIOx_ODR 0x14UL
+
+#define AHB1_BASE   (PERIPHERAL_BASE + AHB1_OFFSET)
+#define GPIOA_BASE  (AHB1_BASE + GPIOA_OFFSET)
+#define RCC_BASE    (AHB1_BASE + RCC_OFFSET)
+
+#define RCC_AHB1ENR (*(volatile unsigned int*) (RCC_BASE + RCC_AHB1ENR_OFFSET))
+#define GPIOA_MODER (*(volatile unsigned int*) (GPIOA_BASE + GPIOx_MODER_OFFSET))
+#define GPIOA_ODR   (*(volatile unsigned int*) (GPIOA_BASE + GPIOx_ODR))
+
+#define GPIOAEN (1U << 0)
+#define PIN5    (1U << 5)
+#define LED_PIN PIN5
+
+
+int main( )
+{
+    RCC_AHB1ENR |= GPIOAEN;
+
+    GPIOA_MODER |= (1U << 10);
+    GPIOA_MODER &= ~(1U << 11);
+
+    while(1)
+    {
+        GPIOA_ODR ^= LED_PIN;
+        for(int i = 0; i < 1000000; i++){}
+    }
+    return 0;
+}

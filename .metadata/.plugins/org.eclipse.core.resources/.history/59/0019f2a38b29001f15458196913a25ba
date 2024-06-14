@@ -1,0 +1,17 @@
+/*
+ * adc.c
+ *
+ *  Created on: Jun 13, 2024
+ *      Author: oemerkara
+ */
+
+#include "adc.h"
+
+void pa1_adc_init(void)
+{
+    //Enable clock access to GPIOA
+	RCC->AHB1ENR |= GPIOAEN;
+	//Set the mode of PA1 to analog
+
+	//Configure the ADC
+}

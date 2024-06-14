@@ -1,0 +1,108 @@
+
+#define __IO volatile
+
+#define PERIPH_BASE           0x40000000UL
+#define APB1PERIPH_BASE       PERIPH_BASE
+#define USART2_BASE           (APB1PERIPH_BASE + 0x4400UL)
+#define USART2                ((USART_TypeDef *) USART2_BASE)
+
+
+#define AHB1PERIPH_BASE       (PERIPH_BASE + 0x00020000UL)
+#define GPIOA_BASE            (AHB1PERIPH_BASE + 0x0000UL)
+
+
+typedef struct
+{
+  __IO uint32_t MODER;
+  __IO uint32_t OTYPER;
+  __IO uint32_t OSPEEDR;
+  __IO uint32_t PUPDR;
+  __IO uint32_t IDR;
+  __IO uint32_t ODR;
+  __IO uint32_t BSRR;
+  __IO uint32_t LCKR;
+  __IO uint32_t AFR[2];
+} GPIO_TypeDef;
+
+
+typedef struct
+{
+  __IO uint32_t SR;
+  __IO uint32_t DR;
+  __IO uint32_t BRR;
+  __IO uint32_t CR1;
+  __IO uint32_t CR2;
+  __IO uint32_t CR3;
+  __IO uint32_t GTPR;
+} USART_TypeDef;
+
+typedef struct
+{
+  __IO uint32_t CR;
+  __IO uint32_t PLLCFGR;
+  __IO uint32_t CFGR;
+  __IO uint32_t CIR;
+  __IO uint32_t AHB1RSTR;
+  __IO uint32_t AHB2RSTR;
+  __IO uint32_t AHB3RSTR;
+  uint32_t      RESERVED0;
+  __IO uint32_t APB1RSTR;
+  __IO uint32_t APB2RSTR;
+  uint32_t      RESERVED1[2];
+  __IO uint32_t AHB1ENR;
+  __IO uint32_t AHB2ENR;
+  __IO uint32_t AHB3ENR;
+  uint32_t      RESERVED2;
+  __IO uint32_t APB1ENR;
+  __IO uint32_t APB2ENR;
+  uint32_t      RESERVED3[2];
+  __IO uint32_t AHB1LPENR;
+  __IO uint32_t AHB2LPENR;
+  __IO uint32_t AHB3LPENR;
+  uint32_t      RESERVED4;
+  __IO uint32_t APB1LPENR;
+  __IO uint32_t APB2LPENR;
+  uint32_t      RESERVED5[2];
+  __IO uint32_t BDCR;
+  __IO uint32_t CSR;
+  uint32_t      RESERVED6[2];
+  __IO uint32_t SSCGR;
+  __IO uint32_t PLLI2SCFGR;
+  __IO uint32_t PLLSAICFGR;
+  __IO uint32_t DCKCFGR;
+  __IO uint32_t CKGATENR;
+  __IO uint32_t DCKCFGR2;
+} RCC_TypeDef;
+
+
+char uart2_read();
+int __io_putchar(int ch); //redirecting printf
+uint16_t compute_uart_baud_rate(uint32_t peripheral_clock, uint32_t baud_rate);
+void uart_set_baud_rate(USART_TypeDef* usart_tx, uint32_t peripheral_clock, uint32_t baud_rate);
+void uart2_txrx_init( );
+void uart2_write(int ch);
+
+#define GPIOA_5 (1U<<5)
+#define LED_PIN GPIOA_5
+
+char key;
+
+int main(void)
+{
+
+	RCC->AHB1ENR |=  GPIOA_EN;
+	GPIOA->MODER |=  (1U << 10);
+	GPIOA->MODER &= ~(1U<<11);
+
+	uart2_txrx_init( );
+
+    while(1)
+    {
+        key = uart2_read();
+        if(key == '1'){
+        	GPIOA->ODR |= LED_PIN;
+        }else{
+        	GPIOA->ODR &= ~LED_PIN;
+        }
+    }
+}

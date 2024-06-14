@@ -1,0 +1,89 @@
+#include <stdint.h>
+
+#define GPIOA_EN      (1U << 0)
+#define USART2_EN     (1U << 17)
+#define APB1_CLK      16000000   // Assuming 16 MHz APB1 clock
+#define UART_BAUDRATE 115200
+
+#define CR1_TE        (1U << 3)
+#define CR1_RE        (1U << 2)
+#define CR1_UE        (1U << 13)
+
+#define SR_TXE        (1U << 7)
+#define SR_RXNE       (1U << 5)
+
+typedef struct {
+    volatile uint32_t MODER;
+    volatile uint32_t OTYPER;
+    volatile uint32_t OSPEEDR;
+    volatile uint32_t PUPDR;
+    volatile uint32_t IDR;
+    volatile uint32_t ODR;
+    volatile uint32_t BSRR;
+    volatile uint32_t LCKR;
+    volatile uint32_t AFR[2];
+} GPIO_TypeDef;
+
+typedef struct {
+    volatile uint32_t SR;
+    volatile uint32_t DR;
+    volatile uint32_t BRR;
+    volatile uint32_t CR1;
+    volatile uint32_t CR2;
+    volatile uint32_t CR3;
+    volatile uint32_t GTPR;
+} USART_TypeDef;
+
+#define RCC_BASE            0x40023800UL
+#define GPIOA_BASE          0x40020000UL
+#define USART2_BASE         0x40004400UL
+
+#define RCC                 ((RCC_TypeDef *) RCC_BASE)
+#define GPIOA               ((GPIO_TypeDef *) GPIOA_BASE)
+#define USART2              ((USART_TypeDef *) USART2_BASE)
+
+void uart2_write(int ch);
+void uart2_txrx_init(void);
+void uart_set_baud_rate(USART_TypeDef* usart, uint32_t apb_clk, uint32_t baud_rate);
+char uart2_read(void);
+
+int main(void) {
+    uart2_txrx_init();
+
+    while (1) {
+        char ch = uart2_read();
+        uart2_write(ch);
+    }
+}
+
+void uart2_txrx_init(void) {
+    RCC->AHB1ENR |= GPIOA_EN;
+    GPIOA->MODER &= ~(3U << 4);     // Clear bits 4-5 for PA2
+    GPIOA->MODER |=  (2U << 4);     // Set PA2 to AF mode
+    GPIOA->AFR[0] &= ~(0xFU << 8);  // Clear bits 8-11 for PA2
+    GPIOA->AFR[0] |=  (7U << 8);    // Set AF7 for USART2 on PA2
+
+    GPIOA->MODER &= ~(3U << 6);     // Clear bits 6-7 for PA3
+    GPIOA->MODER |=  (2U << 6);     // Set PA3 to AF mode
+    GPIOA->AFR[0] &= ~(0xFU << 12); // Clear bits 12-15 for PA3
+    GPIOA->AFR[0] |=  (7U << 12);   // Set AF7 for USART2 on PA3
+
+    RCC->APB1ENR |= USART2_EN;
+    uart_set_baud_rate(USART2, APB1_CLK, UART_BAUDRATE);
+
+    USART2->CR1 = (CR1_TE | CR1_RE | CR1_UE);
+}
+
+char uart2_read(void) {
+    while (!(USART2->SR & SR_RXNE)) {}
+    return USART2->DR & 0xFF;
+}
+
+void uart2_write(int ch) {
+    while (!(USART2->SR & SR_TXE)) {}
+    USART2->DR = (ch & 0xFF);
+}
+
+void uart_set_baud_rate(USART_TypeDef* usart, uint32_t apb_clk, uint32_t baud_rate) {
+    usart->BRR = apb_clk / baud_rate;
+}

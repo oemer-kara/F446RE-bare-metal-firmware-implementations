@@ -1,0 +1,46 @@
+#include "stm32f446xx.h"
+
+#define GPIOA_ENABLE  (1U << 0)
+#define GPIOC_ENABLE  (1U << 2)
+#define PIN5 		    (1U << 5)
+#define LED_PIN		PIN5
+
+
+void custom_sleep() {
+	for(int i = 0; i < 10000000; i++){}
+}
+
+
+//B1 USER: the user button is connected to the I/O PC13 (pin 2)
+int read_button_state(){
+		uint32_t mask = (1<<13);
+		uint32_t bit_value = (mask & GPIOC->IDR) >> 13;
+		return bit_value;
+}
+
+int main(void){
+
+	RCC->AHB1ENR |=  GPIOA_ENABLE;
+	RCC->AHB1ENR |=  GPIOC_ENABLE;
+	GPIOA->MODER |=  (1U << 10);
+	GPIOA->MODER &=~ (1U << 11);
+
+	//No need for input state because it is input when reset
+	// Read the 13th bit of IDR;
+
+		int set_reset = 0;
+
+	while(1)
+	{
+		if(set_reset){
+			GPIOA->BSRR |= (1U << 5);
+		}else{
+			GPIOA->BSRR |= (1U << 5);
+		}
+	}
+}
+
+
+
+
+

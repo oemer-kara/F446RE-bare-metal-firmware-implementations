@@ -1,0 +1,18 @@
+/*
+ * uart.h
+ *
+ *  Created on: Jun 13, 2024
+ *      Author: oemerkara
+ */
+
+#ifndef UART_H_
+#define UART_H_
+
+#include "stm32f446xx.h"
+#include <stdint.h>
+
+static uint16_t compute_uart_baud_rate(uint32_t peripheral_clock, uint32_t baud_rate);
+static void uart_set_baud_rate(USART_TypeDef* usart_tx, uint32_t peripheral_clock, uint32_t baud_rate);
+void uart2_tx_init( );
+void uart2_write(int ch);
+#endif /* UART_H_ */

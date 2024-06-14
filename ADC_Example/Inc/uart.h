@@ -1,0 +1,31 @@
+/*
+ * uart.h
+ *
+ *  Created on: Jun 13, 2024
+ *      Author: oemerkara
+ */
+
+#ifndef UART_H_
+#define UART_H_
+
+#include "stm32f446xx.h"
+#include <stdint.h>
+
+#define GPIOA_EN      (1U << 0)
+#define USART2_EN     (1U << 17)
+#define SYS_FREQ      16000000
+#define APB1_CLK      SYS_FREQ     // Assuming no prescalers are used
+#define UART_BAUDRATE 115200
+#define CR1_TE        (1U << 3)
+#define CR1_UE        (1U << 13)
+#define SR_TXE        (1U << 7)
+#define CR1_RE        (1U << 2)
+#define SR_RXNE       (1U << 5)
+
+char     uart2_read( );
+int      __io_putchar(int ch);
+uint16_t compute_uart_baud_rate(uint32_t peripheral_clock, uint32_t baud_rate);
+void     uart_set_baud_rate(USART_TypeDef* usart_tx, uint32_t peripheral_clock, uint32_t baud_rate);
+void     uart2_txrx_init( );
+void     uart2_write(int ch);
+#endif /* UART_H_ */

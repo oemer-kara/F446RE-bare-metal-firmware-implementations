@@ -1,0 +1,14 @@
+/*
+ * adc.h
+ *
+ *  Created on: Jun 13, 2024
+ *      Author: oemerkara
+ */
+
+#ifndef ADC_H_
+#define ADC_H_
+
+#define ADC1EN (1U << 8)
+void pa1_adc_init(void);
+
+#endif /* ADC_H_ */
