@@ -12,28 +12,13 @@
 
 
 #include "uart.h"
-#include <stdio.h>
-
-/** @defgroup GPIO_Pin_Definitions GPIO Pin Definitions
- * @{
- */
 
 #define GPIOA_5 (1U<<5) /**< GPIOA Pin 5 */
 #define LED_PIN GPIOA_5 /**< LED Pin (GPIOA Pin 5) */
 
-/** @} */ // end of GPIO_Pin_Definitions
 
 char key; /**< Variable to store received key */
 
-/**
- * @brief Main function.
- *
- * This is the entry point of the program. It initializes the GPIOA for LED control
- * and UART2 for communication. The program continuously reads characters from UART2
- * and controls the LED based on the received character ('1' to turn on, any other key to turn off).
- *
- * @return int This function does not return.
- */
 int main(void)
 {
     // Enable clock access to GPIOA
@@ -49,15 +34,7 @@ int main(void)
     {
         // Read a character from UART2
         key = uart2_read();
-        if (key == '1')
-        {
-            // Turn on the LED if '1' is received
-            GPIOA->ODR |= LED_PIN;
-        }
-        else
-        {
-            // Turn off the LED for any other received character
-            GPIOA->ODR &= ~LED_PIN;
-        }
+        // Write a character to terminal
+        uart2_write(key);
     }
 }

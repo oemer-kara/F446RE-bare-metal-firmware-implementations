@@ -1,0 +1,54 @@
+/**
+ * @brief Testing UART communication with RealTerm.
+ *
+ * To verify UART communication:
+ * - Open RealTerm and set the baudrate to 115200.
+ * - Send characters through RealTerm's terminal.
+ *   - If you send '1', the LED should turn on.
+ *   - Otherwise, the LED should turn off.
+ *
+ * This tests the functionality of UART communication with external software.
+ */
+
+
+#include "uart.h"
+#include <stdio.h>
+
+/** @defgroup GPIO_Pin_Definitions GPIO Pin Definitions
+ * @{
+ */
+
+#define GPIOA_5 (1U<<5) /**< GPIOA Pin 5 */
+#define LED_PIN GPIOA_5 /**< LED Pin (GPIOA Pin 5) */
+
+/** @} */ // end of GPIO_Pin_Definitions
+
+char key; /**< Variable to store received key */
+
+/**
+ * @brief Main function.
+ *
+ * This is the entry point of the program. It initializes the GPIOA for LED control
+ * and UART2 for communication. The program continuously reads characters from UART2
+ * and controls the LED based on the received character ('1' to turn on, any other key to turn off).
+ *
+ * @return int This function does not return.
+ */
+int main(void)
+{
+    // Enable clock access to GPIOA
+    RCC->AHB1ENR |= GPIOA_EN;
+    // Set PA5 mode to output
+    GPIOA->MODER |= (1U << 10);
+    GPIOA->MODER &= ~(1U << 11);
+
+    // Initialize UART2 for transmission and reception
+    uart2_txrx_init();
+
+    while (1)
+    {
+        // Read a character from UART2
+        key = uart2_read();
+        printf("Patates Patlican");
+    }
+}

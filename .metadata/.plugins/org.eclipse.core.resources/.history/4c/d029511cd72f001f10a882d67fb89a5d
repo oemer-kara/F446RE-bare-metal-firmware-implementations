@@ -1,0 +1,31 @@
+/*
+ * systick.c
+ *
+ *  Created on: Jun 21, 2024
+ *      Author: oemerkara
+ */
+
+#include "systick.h"
+
+
+
+void systick_delay_ms(int delay_in_ms)
+{
+	//Configuıre systick
+	SysTick->LOAD = SYSTICK_LOAD_VAL;
+
+	//Clear systick current value register
+	SysTick->VAL = 0;
+
+	//Enable systick and select internal clock source
+	SysTick->CTRL = CTRL_ENABLE | CTRL_CLCKSRC;
+
+	for(int i = 0; i < delay_in_ms; ++i){
+		//Wait until the COUNTFLAG is set
+		while((SysTick->CTRL & CTRL_COUNTFLAG) == 0){}
+	}
+
+	SysTick->CTRL = 0;
+}
+
+

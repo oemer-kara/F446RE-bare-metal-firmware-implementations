@@ -55,3 +55,379 @@ arm-none-eabi-size  ADC_Example.elf
    5428	     92	   1908	   7428	   1d04	ADC_Example.elf
 Finished building: default.size.stdout
  
+12:46:17 **** Incremental Build of configuration Debug for project ADC_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/adc.d" -MT"Src/adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/adc.o"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+arm-none-eabi-gcc -o "ADC_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\ADC_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ADC_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: ADC_Example.elf
+ 
+arm-none-eabi-size  ADC_Example.elf 
+arm-none-eabi-objdump -h -S ADC_Example.elf  > "ADC_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   5428	     92	   1908	   7428	   1d04	ADC_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: ADC_Example.list
+ 
+12:46:18 **** Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+arm-none-eabi-gcc -o "UART_RXTX_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\UART_RXTX_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_RXTX_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_RXTX_Example.elf
+ 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+arm-none-eabi-objdump -h -S UART_RXTX_Example.elf  > "UART_RXTX_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   1100	      0	   1568	   2668	    a6c	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_RXTX_Example.list
+ 
+15:29:59 **** Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1100	      0	   1568	   2668	    a6c	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:30:15 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1100	      0	   1568	   2668	    a6c	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:31:03 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1100	      0	   1568	   2668	    a6c	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:31:53 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c: In function 'main':
+../Src/main.c:52:9: warning: implicit declaration of function 'prinf'; did you mean 'printf'? [-Wimplicit-function-declaration]
+   52 |         prinf(key);
+      |         ^~~~~
+      |         printf
+arm-none-eabi-gcc -o "UART_RXTX_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\UART_RXTX_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_RXTX_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+D:/Programs/STM32CubeIDE_1.15.1/STM32CubeIDE/plugins/com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256/tools/bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/bin/ld.exe: ./Src/main.o: in function `main':
+D:/Workspace/STM32/UART_RXTX_Example/Debug/../Src/main.c:52: undefined reference to `prinf'
+collect2.exe: error: ld returned 1 exit status
+make: *** [makefile:63: UART_RXTX_Example.elf] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:32:00 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+../Src/main.c: In function 'main':
+../Src/main.c:52:16: warning: passing argument 1 of 'printf' makes pointer from integer without a cast [-Wint-conversion]
+   52 |         printf(key);
+      |                ^~~
+      |                |
+      |                char
+In file included from ../Src/main.c:15:
+D:\Programs\STM32CubeIDE_1.15.1\STM32CubeIDE\plugins\com.st.stm32cube.ide.mcu.externaltools.gnu-tools-for-stm32.12.3.rel1.win32_1.0.100.202403111256\tools\bin/../lib/gcc/arm-none-eabi/12.3.1/../../../../arm-none-eabi/include/stdio.h:206:17: note: expected 'const char * restrict' but argument is of type 'char'
+  206 | int     printf (const char *__restrict, ...)
+      |                 ^
+arm-none-eabi-gcc -o "UART_RXTX_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\UART_RXTX_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_RXTX_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_RXTX_Example.elf
+ 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+arm-none-eabi-objdump -h -S UART_RXTX_Example.elf  > "UART_RXTX_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   5308	     92	   1908	   7308	   1c8c	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_RXTX_Example.list
+ 
+15:33:57 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "UART_RXTX_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\UART_RXTX_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_RXTX_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_RXTX_Example.elf
+ 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+arm-none-eabi-objdump -h -S UART_RXTX_Example.elf  > "UART_RXTX_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_RXTX_Example.list
+ 
+15:34:03 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:34:55 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "UART_RXTX_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\UART_RXTX_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_RXTX_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_RXTX_Example.elf
+ 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+arm-none-eabi-objdump -h -S UART_RXTX_Example.elf  > "UART_RXTX_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   3732	     92	   1908	   5732	   1664	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_RXTX_Example.list
+ 
+15:35:01 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   3732	     92	   1908	   5732	   1664	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:35:40 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "UART_RXTX_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\UART_RXTX_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_RXTX_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_RXTX_Example.elf
+ 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+arm-none-eabi-objdump -h -S UART_RXTX_Example.elf  > "UART_RXTX_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   5324	     92	   1908	   7324	   1c9c	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_RXTX_Example.list
+ 
+15:35:46 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5324	     92	   1908	   7324	   1c9c	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:44:53 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+arm-none-eabi-gcc -o "UART_RXTX_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\UART_RXTX_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_RXTX_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_RXTX_Example.elf
+ 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+arm-none-eabi-objdump -h -S UART_RXTX_Example.elf  > "UART_RXTX_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_RXTX_Example.list
+ 
+15:44:58 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:45:59 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+arm-none-eabi-gcc -o "UART_RXTX_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\UART_RXTX_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="UART_RXTX_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: UART_RXTX_Example.elf
+ 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+arm-none-eabi-objdump -h -S UART_RXTX_Example.elf  > "UART_RXTX_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: UART_RXTX_Example.list
+ 
+15:46:04 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:46:30 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:46:39 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:46:44 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:46:56 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:46:56 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:46:56 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:46:57 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:47:04 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+make -j16 all 
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
+15:47:47 **** Clean-only build of configuration Debug for project Systick_Timer_Example ****
+make -j16 clean 
+rm -rf ./Startup/startup_stm32f446retx.d ./Startup/startup_stm32f446retx.o
+rm -rf ./Src/adc.cyclo ./Src/adc.d ./Src/adc.o ./Src/adc.su ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su ./Src/uart.cyclo ./Src/uart.d ./Src/uart.o ./Src/uart.su
+rm -rf ADC_Example.elf ADC_Example.list ADC_Example.map default.size.stdout
+ 
+15:47:48 **** Build of configuration Debug for project Systick_Timer_Example ****
+make -j16 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f446retx.d" -MT"Startup/startup_stm32f446retx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f446retx.o" "../Startup/startup_stm32f446retx.s"
+arm-none-eabi-gcc "../Src/adc.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/adc.d" -MT"Src/adc.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/adc.o"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+arm-none-eabi-gcc "../Src/systick.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/systick.d" -MT"Src/systick.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/systick.o"
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+../Src/main.c:19: warning: "GPIOAEN" redefined
+   19 | #define GPIOAEN (1U<<0)
+      | 
+In file included from ../Src/main.c:15:
+../Inc/adc.h:18: note: this is the location of the previous definition
+   18 | #define GPIOAEN     (1U << 0)  /**< Enable GPIOA */
+      | 
+../Src/main.c: In function 'main':
+../Src/main.c:26:9: error: 'GPIAO' undeclared (first use in this function); did you mean 'GPIOA'?
+   26 |         GPIAO->MODER |= (1U<<10);
+      |         ^~~~~
+      |         GPIOA
+../Src/main.c:26:9: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c:21:13: error: 'GPIOA_5' undeclared (first use in this function); did you mean 'GPIOA_A'?
+   21 | #define LED GPIOA_5
+      |             ^~~~~~~
+../Src/main.c:34:23: note: in expansion of macro 'LED'
+   34 |         GPIOA->ODR ^= LED;
+      |                       ^~~
+make: *** [Src/subdir.mk:34: Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:49:18 **** Incremental Build of configuration Debug for project Systick_Timer_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+../Src/uart.c: In function 'uart2_txrx_init':
+../Src/uart.c:72:21: error: 'GPIOA_EN' undeclared (first use in this function); did you mean 'GPIOA'?
+   72 |     RCC->AHB1ENR |= GPIOA_EN;
+      |                     ^~~~~~~~
+      |                     GPIOA
+../Src/uart.c:72:21: note: each undeclared identifier is reported only once for each function it appears in
+../Src/main.c: In function 'main':
+../Src/main.c:21:27: error: 'GPIOA_5' undeclared (first use in this function); did you mean 'GPIOA_A'?
+   21 | #define LED               GPIOA_5
+      |                           ^~~~~~~
+../Src/main.c:34:23: note: in expansion of macro 'LED'
+   34 |         GPIOA->ODR ^= LED;
+      |                       ^~~
+../Src/main.c:21:27: note: each undeclared identifier is reported only once for each function it appears in
+   21 | #define LED               GPIOA_5
+      |                           ^~~~~~~
+../Src/main.c:34:23: note: in expansion of macro 'LED'
+   34 |         GPIOA->ODR ^= LED;
+      |                       ^~~
+make: *** [Src/subdir.mk:34: Src/uart.o] Error 1
+make: *** Waiting for unfinished jobs....
+make: *** [Src/subdir.mk:34: Src/main.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:49:32 **** Incremental Build of configuration Debug for project Systick_Timer_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+../Src/uart.c: In function 'uart2_txrx_init':
+../Src/uart.c:72:21: error: 'GPIOA_EN' undeclared (first use in this function); did you mean 'GPIOA'?
+   72 |     RCC->AHB1ENR |= GPIOA_EN;
+      |                     ^~~~~~~~
+      |                     GPIOA
+../Src/uart.c:72:21: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Src/subdir.mk:34: Src/uart.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:49:43 **** Incremental Build of configuration Debug for project Systick_Timer_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+../Src/uart.c: In function 'uart2_txrx_init':
+../Src/uart.c:72:21: error: 'GPIOA_EN' undeclared (first use in this function); did you mean 'GPIOA'?
+   72 |     RCC->AHB1ENR |= GPIOA_EN;
+      |                     ^~~~~~~~
+      |                     GPIOA
+../Src/uart.c:72:21: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Src/subdir.mk:34: Src/uart.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:49:46 **** Incremental Build of configuration Debug for project Systick_Timer_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+../Src/uart.c: In function 'uart2_txrx_init':
+../Src/uart.c:72:21: error: 'GPIOA_EN' undeclared (first use in this function); did you mean 'GPIOA'?
+   72 |     RCC->AHB1ENR |= GPIOA_EN;
+      |                     ^~~~~~~~
+      |                     GPIOA
+../Src/uart.c:72:21: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [Src/subdir.mk:34: Src/uart.o] Error 1
+"make -j16 all" terminated with exit code 2. Build might be incomplete.
+15:50:06 **** Incremental Build of configuration Debug for project Systick_Timer_Example ****
+make -j16 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/uart.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/uart.d" -MT"Src/uart.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/uart.o"
+arm-none-eabi-gcc -o "Systick_Timer_Example.elf" @"objects.list"   -mcpu=cortex-m4 -T"D:\Workspace\STM32\Systick_Timer_Example\STM32F446RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Systick_Timer_Example.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Systick_Timer_Example.elf
+ 
+arm-none-eabi-size  Systick_Timer_Example.elf 
+arm-none-eabi-objdump -h -S Systick_Timer_Example.elf  > "Systick_Timer_Example.list"
+   text	   data	    bss	    dec	    hex	filename
+   5392	     92	   1900	   7384	   1cd8	Systick_Timer_Example.elf
+Finished building: default.size.stdout
+ 
+Finished building: Systick_Timer_Example.list
+ 
+15:50:41 **** Incremental Build of configuration Debug for project Systick_Timer_Example ****
+make -j16 all 
+arm-none-eabi-size  Systick_Timer_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   5392	     92	   1900	   7384	   1cd8	Systick_Timer_Example.elf
+Finished building: default.size.stdout
+ 

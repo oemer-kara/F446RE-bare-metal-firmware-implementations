@@ -29,23 +29,23 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  12 .debug_info   00001191  00000000  00000000  0000308c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000005e0  00000000  00000000  0000421d  2**0
+ 13 .debug_abbrev 000005e4  00000000  00000000  0000421d  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000188  00000000  00000000  00004800  2**3
+ 14 .debug_aranges 00000188  00000000  00000000  00004808  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 00000109  00000000  00000000  00004988  2**0
+ 15 .debug_rnglists 00000109  00000000  00000000  00004990  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  0001a94a  00000000  00000000  00004a91  2**0
+ 16 .debug_macro  0001a94a  00000000  00000000  00004a99  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   0000230a  00000000  00000000  0001f3db  2**0
+ 17 .debug_line   00002320  00000000  00000000  0001f3e3  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000906bf  00000000  00000000  000216e5  2**0
+ 18 .debug_str    000906c2  00000000  00000000  00021703  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  000b1da4  2**0
+ 19 .comment      00000043  00000000  00000000  000b1dc5  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  00000c34  00000000  00000000  000b1de8  2**2
+ 20 .debug_frame  00000c34  00000000  00000000  000b1e08  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 00000048  00000000  00000000  000b2a1c  2**0
+ 21 .debug_line_str 00000048  00000000  00000000  000b2a3c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -139,58 +139,58 @@ Disassembly of section .text:
  80002ae:	bf00      	nop
 
 080002b0 <pa1_adc_init>:
+ * - Enables clock access to ADC1.
+ * - Configures the ADC parameters (conversion sequence and length).
+ * - Enables the ADC module.
  */
-
-#include "adc.h"
-
 void pa1_adc_init(void)
 {
  80002b0:	b480      	push	{r7}
  80002b2:	af00      	add	r7, sp, #0
-    //Enable clock access to GPIOA
-	RCC->AHB1ENR |= GPIOAEN;
+    // Enable clock access to GPIOA
+    RCC->AHB1ENR |= GPIOAEN;
  80002b4:	4b15      	ldr	r3, [pc, #84]	@ (800030c <pa1_adc_init+0x5c>)
  80002b6:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
  80002b8:	4a14      	ldr	r2, [pc, #80]	@ (800030c <pa1_adc_init+0x5c>)
  80002ba:	f043 0301 	orr.w	r3, r3, #1
  80002be:	6313      	str	r3, [r2, #48]	@ 0x30
-	//Set the mode of PA1 to analog
-	GPIOA->MODER |= (1U<<2);
+    // Set the mode of PA1 to analog
+    GPIOA->MODER |= (1U<<2);
  80002c0:	4b13      	ldr	r3, [pc, #76]	@ (8000310 <pa1_adc_init+0x60>)
  80002c2:	681b      	ldr	r3, [r3, #0]
  80002c4:	4a12      	ldr	r2, [pc, #72]	@ (8000310 <pa1_adc_init+0x60>)
  80002c6:	f043 0304 	orr.w	r3, r3, #4
  80002ca:	6013      	str	r3, [r2, #0]
-	GPIOA->MODER |= (1U<<3);
+    GPIOA->MODER |= (1U<<3);
  80002cc:	4b10      	ldr	r3, [pc, #64]	@ (8000310 <pa1_adc_init+0x60>)
  80002ce:	681b      	ldr	r3, [r3, #0]
  80002d0:	4a0f      	ldr	r2, [pc, #60]	@ (8000310 <pa1_adc_init+0x60>)
  80002d2:	f043 0308 	orr.w	r3, r3, #8
  80002d6:	6013      	str	r3, [r2, #0]
 
-	//Configure the ADC
-	//Enable clock access to ADC
-	RCC->APB2ENR |= ADC1EN;
+    // Configure the ADC
+    // Enable clock access to ADC1
+    RCC->APB2ENR |= ADC1EN;
  80002d8:	4b0c      	ldr	r3, [pc, #48]	@ (800030c <pa1_adc_init+0x5c>)
  80002da:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
  80002dc:	4a0b      	ldr	r2, [pc, #44]	@ (800030c <pa1_adc_init+0x5c>)
  80002de:	f443 7380 	orr.w	r3, r3, #256	@ 0x100
  80002e2:	6453      	str	r3, [r2, #68]	@ 0x44
-	//Configure the ADC parameters
-	//Conversion sequence start
-	ADC1->SQR3 |= ADC_CH1;
+    // Configure the ADC parameters
+    // Conversion sequence start
+    ADC1->SQR3 |= ADC_CH1;
  80002e4:	4b0b      	ldr	r3, [pc, #44]	@ (8000314 <pa1_adc_init+0x64>)
  80002e6:	6b5b      	ldr	r3, [r3, #52]	@ 0x34
  80002e8:	4a0a      	ldr	r2, [pc, #40]	@ (8000314 <pa1_adc_init+0x64>)
  80002ea:	f043 0301 	orr.w	r3, r3, #1
  80002ee:	6353      	str	r3, [r2, #52]	@ 0x34
-	//Conversion sequence length
-	ADC1->SQR1 = ADC_SEQ_LEN;
+    // Conversion sequence length
+    ADC1->SQR1 = ADC_SEQ_LEN;
  80002f0:	4b08      	ldr	r3, [pc, #32]	@ (8000314 <pa1_adc_init+0x64>)
  80002f2:	2200      	movs	r2, #0
  80002f4:	62da      	str	r2, [r3, #44]	@ 0x2c
-	//Enable ADC module
-	ADC1->CR2 |= CR2_ADON;
+    // Enable ADC module
+    ADC1->CR2 |= CR2_ADON;
  80002f6:	4b07      	ldr	r3, [pc, #28]	@ (8000314 <pa1_adc_init+0x64>)
  80002f8:	689b      	ldr	r3, [r3, #8]
  80002fa:	4a06      	ldr	r2, [pc, #24]	@ (8000314 <pa1_adc_init+0x64>)
@@ -206,12 +206,15 @@ void pa1_adc_init(void)
  8000314:	40012000 	.word	0x40012000
 
 08000318 <start_conversion>:
-
+ *
+ * This function sets the SWSTART bit in the ADC control register to start
+ * the analog-to-digital conversion process.
+ */
 void start_conversion(void)
 {
  8000318:	b480      	push	{r7}
  800031a:	af00      	add	r7, sp, #0
-	ADC1->CR2 |= CR2_SWSTART;
+    ADC1->CR2 |= CR2_SWSTART;
  800031c:	4b05      	ldr	r3, [pc, #20]	@ (8000334 <start_conversion+0x1c>)
  800031e:	689b      	ldr	r3, [r3, #8]
  8000320:	4a04      	ldr	r2, [pc, #16]	@ (8000334 <start_conversion+0x1c>)
@@ -226,21 +229,24 @@ void start_conversion(void)
  8000334:	40012000 	.word	0x40012000
 
 08000338 <adc_read>:
-
+ * digital representation of the analog input.
+ *
+ * @return uint32_t The ADC conversion result.
+ */
 uint32_t adc_read(void)
 {
  8000338:	b480      	push	{r7}
  800033a:	af00      	add	r7, sp, #0
-	//Wait for conversion to be complete
-	while(!(ADC1->SR & SR_EOC)){}
+    // Wait for conversion to be complete
+    while(!(ADC1->SR & SR_EOC)){}
  800033c:	bf00      	nop
  800033e:	4b06      	ldr	r3, [pc, #24]	@ (8000358 <adc_read+0x20>)
  8000340:	681b      	ldr	r3, [r3, #0]
  8000342:	f003 0302 	and.w	r3, r3, #2
  8000346:	2b00      	cmp	r3, #0
  8000348:	d0f9      	beq.n	800033e <adc_read+0x6>
-	//Read converted result
-	return ADC1->DR;
+    // Read converted result
+    return ADC1->DR;
  800034a:	4b03      	ldr	r3, [pc, #12]	@ (8000358 <adc_read+0x20>)
  800034c:	6cdb      	ldr	r3, [r3, #76]	@ 0x4c
 }
@@ -251,31 +257,34 @@ uint32_t adc_read(void)
  8000358:	40012000 	.word	0x40012000
 
 0800035c <main>:
-#include <stdio.h>
-
-uint32_t sensor_value;
-
+ * reads the sensor value, and prints it to the UART.
+ *
+ * @return int This function does not return.
+ */
 int main(void)
 {
  800035c:	b580      	push	{r7, lr}
  800035e:	af00      	add	r7, sp, #0
-
-    uart2_txrx_init( );
+    // Initialize UART2 for transmission and reception
+    uart2_txrx_init();
  8000360:	f000 f8ec 	bl	800053c <uart2_txrx_init>
+    // Initialize ADC on PA1
     pa1_adc_init();
  8000364:	f7ff ffa4 	bl	80002b0 <pa1_adc_init>
 
-
-    while(1)
+    while (1)
     {
+        // Start ADC conversion
         start_conversion();
  8000368:	f7ff ffd6 	bl	8000318 <start_conversion>
-    	sensor_value = adc_read();
+        // Read the sensor value from ADC
+        g_sensor_value = adc_read();
  800036c:	f7ff ffe4 	bl	8000338 <adc_read>
  8000370:	4603      	mov	r3, r0
  8000372:	4a05      	ldr	r2, [pc, #20]	@ (8000388 <main+0x2c>)
  8000374:	6013      	str	r3, [r2, #0]
-    	printf("Sensor Value: %d \n\r", (int) sensor_value);
+        // Print the sensor value to UART
+        printf("Sensor Value: %d \n\r", (int) g_sensor_value);
  8000376:	4b04      	ldr	r3, [pc, #16]	@ (8000388 <main+0x2c>)
  8000378:	681b      	ldr	r3, [r3, #0]
  800037a:	4619      	mov	r1, r3
@@ -542,10 +551,10 @@ void *_sbrk(ptrdiff_t incr)
  80004d4:	200001d0 	.word	0x200001d0
 
 080004d8 <__io_putchar>:
-
-#include "uart.h"
-
-
+ *
+ * @param ch The character to be transmitted.
+ * @return int The transmitted character.
+ */
 int __io_putchar(int ch)
 {
  80004d8:	b580      	push	{r7, lr}
@@ -564,7 +573,10 @@ int __io_putchar(int ch)
  80004ee:	bd80      	pop	{r7, pc}
 
 080004f0 <compute_uart_baud_rate>:
-
+ * @param peripheral_clock The clock frequency of the UART peripheral.
+ * @param baud_rate The desired baud rate.
+ * @return uint16_t The computed baud rate setting.
+ */
 uint16_t compute_uart_baud_rate(uint32_t peripheral_clock, uint32_t baud_rate)
 {
  80004f0:	b480      	push	{r7}
@@ -588,7 +600,10 @@ uint16_t compute_uart_baud_rate(uint32_t peripheral_clock, uint32_t baud_rate)
  8000514:	4770      	bx	lr
 
 08000516 <uart_set_baud_rate>:
-
+ * @param usart_tx The UART peripheral to configure.
+ * @param peripheral_clock The clock frequency of the UART peripheral.
+ * @param baud_rate The desired baud rate.
+ */
 void uart_set_baud_rate(USART_TypeDef* usart_tx, uint32_t peripheral_clock, uint32_t baud_rate)
 {
  8000516:	b580      	push	{r7, lr}
@@ -613,8 +628,11 @@ void uart_set_baud_rate(USART_TypeDef* usart_tx, uint32_t peripheral_clock, uint
 	...
 
 0800053c <uart2_txrx_init>:
-
-void uart2_txrx_init( )
+ * - Configures the UART baud rate.
+ * - Sets the transfer direction to transmit and receive.
+ * - Enables the UART module.
+ */
+void uart2_txrx_init(void)
 {
  800053c:	b580      	push	{r7, lr}
  800053e:	af00      	add	r7, sp, #0
@@ -660,15 +678,14 @@ void uart2_txrx_init( )
  8000580:	4a17      	ldr	r2, [pc, #92]	@ (80005e0 <uart2_txrx_init+0xa4>)
  8000582:	f023 03c0 	bic.w	r3, r3, #192	@ 0xc0
  8000586:	6013      	str	r3, [r2, #0]
-    GPIOA->MODER |= (2U << 6); // Set bits 7-7 to 0010 (Alternate Function)
+    GPIOA->MODER |= (2U << 6);  // Set bits 6-7 to 10 (Alternate Function)
  8000588:	4b15      	ldr	r3, [pc, #84]	@ (80005e0 <uart2_txrx_init+0xa4>)
  800058a:	681b      	ldr	r3, [r3, #0]
  800058c:	4a14      	ldr	r2, [pc, #80]	@ (80005e0 <uart2_txrx_init+0xa4>)
  800058e:	f043 0380 	orr.w	r3, r3, #128	@ 0x80
  8000592:	6013      	str	r3, [r2, #0]
 
-
-    //Set PA3 Alternate Function type to UART_RX (AF07)
+    // Set PA3 Alternate Function type to UART_RX (AF07)
     GPIOA->AFR[0] &= ~(0xF << 12);
  8000594:	4b12      	ldr	r3, [pc, #72]	@ (80005e0 <uart2_txrx_init+0xa4>)
  8000596:	6a1b      	ldr	r3, [r3, #32]
@@ -681,7 +698,6 @@ void uart2_txrx_init( )
  80005a4:	4a0e      	ldr	r2, [pc, #56]	@ (80005e0 <uart2_txrx_init+0xa4>)
  80005a6:	f443 43e0 	orr.w	r3, r3, #28672	@ 0x7000
  80005aa:	6213      	str	r3, [r2, #32]
-
 
     // Enable clock access to UART2
     RCC->APB1ENR |= USART2_EN;
@@ -721,17 +737,17 @@ void uart2_txrx_init( )
  80005e8:	40004400 	.word	0x40004400
 
 080005ec <uart2_write>:
-	return USART2->DR;
-
-}
-
+ * then writes the character to the UART2 data register.
+ *
+ * @param ch The character to be transmitted.
+ */
 void uart2_write(int ch)
 {
  80005ec:	b480      	push	{r7}
  80005ee:	b083      	sub	sp, #12
  80005f0:	af00      	add	r7, sp, #0
  80005f2:	6078      	str	r0, [r7, #4]
-    // Make sure transmit data register is empty
+    // Make sure the transmit data register is empty
     while(!(USART2->SR & SR_TXE)) {}
  80005f4:	bf00      	nop
  80005f6:	4b08      	ldr	r3, [pc, #32]	@ (8000618 <uart2_write+0x2c>)

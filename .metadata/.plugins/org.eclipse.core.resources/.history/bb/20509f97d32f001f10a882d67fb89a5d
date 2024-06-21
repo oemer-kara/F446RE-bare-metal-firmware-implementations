@@ -1,0 +1,20 @@
+/*
+ * systick.h
+ *
+ *  Created on: Jun 21, 2024
+ *      Author: oemerkara
+ */
+
+#ifndef SYSTICK_H_
+#define SYSTICK_H_
+#include "stm32f446xx.h"
+
+#define SYSTICK_LOAD_VAL 16000
+#define CTRL_ENABLE (1U<<0)
+#define CTRL_CLCKSRC (1U<<2)
+#define CTRL_COUNTFLAG (1U<<16)
+
+
+void systick_delay_ms(int ms);
+
+#endif /* SYSTICK_H_ */

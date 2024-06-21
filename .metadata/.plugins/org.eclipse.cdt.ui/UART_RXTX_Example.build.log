@@ -1,12 +1,10 @@
-10:35:47 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
+15:47:04 **** Incremental Build of configuration Debug for project UART_RXTX_Example ****
 make -j16 all 
-arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F446RETx -DNUCLEO_F446RE -c -I../Inc -I"D:/Workspace/STM32/chip_headers/CMSIS/Include" -I"D:/Workspace/STM32/chip_headers/CMSIS/Device/ST/STM32F4xx/Include" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
-../Src/main.c:3:10: fatal error: adc.h: No such file or directory
-    3 | #include "adc.h"
-      |          ^~~~~~~
-compilation terminated.
-make: *** [Src/subdir.mk:28: Src/main.o] Error 1
-"make -j16 all" terminated with exit code 2. Build might be incomplete.
+arm-none-eabi-size  UART_RXTX_Example.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1128	      0	   1568	   2696	    a88	UART_RXTX_Example.elf
+Finished building: default.size.stdout
+ 
 
-10:35:48 Build Failed. 2 errors, 0 warnings. (took 133ms)
+15:47:04 Build Finished. 0 errors, 0 warnings. (took 143ms)
 

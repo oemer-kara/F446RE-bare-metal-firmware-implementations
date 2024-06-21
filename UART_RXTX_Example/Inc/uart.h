@@ -14,7 +14,7 @@
 #define GPIOA_EN      (1U << 0)
 #define USART2_EN     (1U << 17)
 #define SYS_FREQ      16000000
-#define APB1_CLK      SYS_FREQ     // Assuming no prescalers are used
+#define APB1_CLK      SYS_FREQ
 #define UART_BAUDRATE 115200
 #define CR1_TE        (1U << 3)
 #define CR1_UE        (1U << 13)
